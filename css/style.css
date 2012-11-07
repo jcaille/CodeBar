@@ -1,0 +1,80 @@
+
+#header h1{
+	font-size :x-large;
+	margin : 0;
+	text-align : center;
+}
+
+#header h2{
+	font-size :large;
+	margin : 0;
+}
+
+#header img{
+	padding-top : 5px;
+	height : 30px ;
+	width : 30px;
+	vertical-align:  middle;
+}
+
+#content{
+	padding-top : 40px ;
+}
+
+#progressBar{
+	margin-top : 30px ;
+	margin-bototm : 30px ;
+}
+
+.thumbnail{
+	position : relative ;
+}
+
+.thumbnail .badgeItem{
+	position : absolute ;
+	top: -5px;
+	left : -3px ;
+	font-size : 1.1em;
+	padding-top : 2px;
+	padding-bottom : 4px;
+}
+
+.thumbnail .removeItemBadge{
+	position : absolute ;
+	top: -5px;
+	right : -3px ;
+	font-size : 1.1em;
+	padding-top : 1px;
+	padding-bottom : 4px;
+}
+
+.thumbnail .removeItemButton{
+	position : absolute ;
+	top : -5px ;
+	right : -3px ;
+	font-size : 1.1em;
+	height : 40px ;
+	width : 40px ;
+
+	cursor : pointer;
+}
+
+.text-right{
+	text-align : right;
+}
+
+#infoPanel {
+	position : absolute;
+	z-index : 500;
+	top : 40px;
+	left : 0;
+	background-color : white;
+	box-shadow : grey 0px 3px 3px;
+
+	padding-top : 10px;
+	padding-bottom : 10px;
+}
+
+p {
+	font-size : 0.8em;
+}
