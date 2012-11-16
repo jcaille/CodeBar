@@ -30,7 +30,7 @@ $(document).ready(function(){
 			checkTable(jsonInitialData.table) ;
 			displayMenu(jsonInitialData.htmlContent) ;
 			$("#closeInfoPanel").show() ;
-
+			readyToOrder(jsonInitialData.table);
 			globalDTB = jsonInitialData.database.items ;
 		}
 		)
@@ -245,10 +245,7 @@ function getCommandContent(){
 	function checkTable(barTableId){
 		if (barTableId > 0){
 			globalTableId = barTableId ;
-			readyToOrder(barTableId);
-			return true ;
 		}
-		return false ;
 	}
 
 })
