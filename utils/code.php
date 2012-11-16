@@ -66,7 +66,7 @@ function matchWithTable($url){
 	$sth->execute(array(htmlspecialchars($url)));
 	
 	if ($sth->rowCount() != 1) {
-		return -2;
+		return -1;
 	} else {
 		$a = $sth->fetch();
 		if($a["active"] == 1){
