@@ -44,19 +44,20 @@
 			$htmlString = $htmlString . '<div class="accordion-inner">';
 			for($i = 0 ; $i < count($items) ; $i++){
 				$item = $items[$i];
-				if($i % 3 == 0){
+				if($i % 2 == 0){
 					$htmlString = $htmlString . '<ul class="thumbnails">' ;
 				}
-				$htmlString = $htmlString . '<li class="span4" id="item'.$item->id.'">';
+				$htmlString = $htmlString . '<li class="span6" id="item'.$item->id.'">';
 				$htmlString = $htmlString . '<div class="thumbnail">';
 				$htmlString = $htmlString . '<span id="badgeItem'.$item->id.'" class="badgeItem badge badge-success">0</span>';
 				$htmlString = $htmlString . '<span class="removeItemBadge badge badge-important"  id="removeItem'.$item->id.'">-</span>';
 				$htmlString = $htmlString . '<span class="removeItemButton" id="removeItemButton'.$item->id.'"></span>' ;
-				$htmlString = $htmlString . '<img src="http://placehold.it/300x300" />';
-				$htmlString = $htmlString . '<p>'.$item->name;
-				$htmlString = $htmlString . '<br/>'.$item->price.'€ </p>';
+				// $htmlString = $htmlString . '<img src="http://placehold.it/300x100" />';
+				$htmlString = $htmlString . '<h4>'.$item->name .'</h4>';
+				$htmlString = $htmlString . '<p> A cocktail made of stuff that is approximately a few words long </p>' ;
+				$htmlString = $htmlString . '<p>'.$item->price.'€ </p>';
 				$htmlString = $htmlString . '</div></li>';
-				if($i % 3 == 2 || $i == count($items) -1){
+				if($i % 2 == 1 || $i == count($items) -1){
 					$htmlString = $htmlString . '</ul>' ;
 				}
 			}

@@ -6,9 +6,10 @@ require_once("utils/loader.php");
 <HTML>
  <HEAD>
   <TITLE>Code Bar</TITLE>
+  <meta name = "viewport" content = "width = 320,initial-scale = 1, user-scalable = no">
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
-  <meta name = "viewport" content = "width = 320,initial-scale = 1, user-scalable = no">
+  <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 </HEAD>
 <BODY>
  <div id="all" class="row-fluid">
