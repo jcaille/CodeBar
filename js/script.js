@@ -39,7 +39,7 @@ $(document).ready(function(){
 		$("#content").html(text);
 		$(".collapse").collapse();
 		updateBadgesBasedOnCommand();
-		$(".thumbnails li").click(function(){
+		$(".item").click(function(){
 			var id = $(this).attr("id").substring(4);
 			addOne(id);
 		})
@@ -118,27 +118,6 @@ $(document).ready(function(){
 			}
 		}
 
-
-
-function updateBadges(){
-	$(".badgeItem").each(function(){
-		var id = parseInt($(this).attr("id").substring(9));
-		if($(this).html() == 0){
-			$(this).hide();
-			$("#removeItem"+id).hide();
-		} else {
-			$(this).show();
-			$("#removeItem"+id).show();
-		}
-	})
-	$(".badgeCategory").each(function(){
-		if($(this).html() == 0){
-			$(this).hide();
-		} else {
-			$(this).show();
-		}
-	})
-}
 
 function getCommandContent(){
 	var res = new Array() ;

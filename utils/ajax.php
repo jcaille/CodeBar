@@ -26,6 +26,16 @@
 		echo(json_encode($a));
 	}
 
+	if($todo == "validateCommand"){
+		$id = isset($_GET["commandId"]) ? $_GET["commandId"] : -1 ;
+		if($id > 0){
+			$myCommand = Command::get($id) ;
+			echo print_r($myCommand) ;
+			$myCommand->setFulfilled() ;
+		}
+
+	}
+
 	if($todo == "getInitialData"){
 		//TODO : set cookie or something to ID user ?
 		$categories = getAllCategories();
@@ -44,21 +54,30 @@
 			$htmlString = $htmlString . '<div class="accordion-inner">';
 			for($i = 0 ; $i < count($items) ; $i++){
 				$item = $items[$i];
-				if($i % 2 == 0){
-					$htmlString = $htmlString . '<ul class="thumbnails">' ;
-				}
-				$htmlString = $htmlString . '<li class="span6" id="item'.$item->id.'">';
-				$htmlString = $htmlString . '<div class="thumbnail">';
+				$htmlString = $htmlString . "<div class='container-fluid item' id='item".$item->id."'>" ;
+
+				$htmlString = $htmlString . "<div class='span2'>" ;
 				$htmlString = $htmlString . '<span id="badgeItem'.$item->id.'" class="badgeItem badge badge-success">0</span>';
 				$htmlString = $htmlString . '<span class="removeItemBadge badge badge-important"  id="removeItem'.$item->id.'">-</span>';
 				$htmlString = $htmlString . '<span class="removeItemButton" id="removeItemButton'.$item->id.'"></span>' ;
-				// $htmlString = $htmlString . '<img src="http://placehold.it/300x100" />';
-				$htmlString = $htmlString . '<h4>'.$item->name .'</h4>';
-				$htmlString = $htmlString . '<p> A cocktail made of stuff that is approximately a few words long </p>' ;
-				$htmlString = $htmlString . '<p>'.$item->price.'€ </p>';
-				$htmlString = $htmlString . '</div></li>';
-				if($i % 2 == 1 || $i == count($items) -1){
-					$htmlString = $htmlString . '</ul>' ;
+				$htmlString = $htmlString . "</div>" ;
+
+				$htmlString = $htmlString . "<div class='span7'>" ;
+				$htmlString = $htmlString . '<h3>'.$item->name .'</h3>';
+				$htmlString = $htmlString . '<p><strong>'.$item->price.'€ </strong>';
+				if($item->description != null){
+					$htmlString  = $htmlString . ' - ' . $item->description ;
+				}
+				$htmlString = $htmlString .'</p>';
+				$htmlString = $htmlString . "</div>" ;
+
+				$htmlString = $htmlString . "<div class='span3'>" ;
+				$htmlString = $htmlString . '<img src="http://placehold.it/300x300" />';
+				$htmlString = $htmlString . "</div>" ;
+
+				$htmlString = $htmlString . '</div>' ;
+				if( $i != count($items) -1 ){
+					$htmlString = $htmlString . "<hr/>" ;
 				}
 			}
 			$htmlString = $htmlString . '</div></div></div>';

@@ -46,6 +46,7 @@ class Command{
 	public function getArray(){
 		$res = array();
 		$table = BarTable::get($this->barTableId);
+		$res["id"] = $this->id ;
 		$res["state"] = $this->state ;
 		$res["barTableName"] = $table->name;
 		$res["barTableShortName"] = $table->shortName;
@@ -60,7 +61,13 @@ class Command{
 		$query = "UPDATE command SET state='received' WHERE id=? ";
 		$sth = $dbh->prepare($query);
 		$sth->execute(array($this->id));
-		// echo 'received '.$this->id ;
+	}
+
+	public function setFulfilled(){
+		$dbh = Database::connect();
+		$query = "UPDATE command SET state='fulfilled' WHERE id=? ";
+		$sth = $dbh->prepare($query);
+		$sth->execute(array($this->id));
 	}
 }
 
@@ -98,7 +105,7 @@ function getNewCommands(){
 
 function getAllCommands(){
 	$dbh = Database::connect();
-	$query = "SELECT id FROM command WHERE state <> 'aborted' ORDER BY creationTime";
+	$query = "SELECT id FROM command WHERE state <> 'aborted' ORDER BY state DESC, creationTime";
 	$sth = $dbh->prepare($query);
 	$sth->execute();
 	$res = array() ;
@@ -106,6 +113,9 @@ function getAllCommands(){
 		$a = $sth->fetch() ;
 		$id = $a['id'];
 		$command = Command::get($id);
+		if($command->state == 'posted'){
+			$command->setReceived();
+		}
 		$res[$i] = $command->getArray();
 	}
 	return $res ;

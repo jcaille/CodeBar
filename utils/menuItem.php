@@ -7,14 +7,16 @@ class MenuItem{
 	public $price ;
 	public $available ;
 	public $pictureFile ;
+	public $description ;
 	
-	public function __construct($id, $categoryId, $name, $price, $available, $pictureFile) {
+	public function __construct($id, $categoryId, $name, $price, $available, $pictureFile, $description) {
 	    $this->id = $id;
 	    $this->categoryId = $categoryId;
 	    $this->name = $name;
 	    $this->price = $price;
 	    $this->available = $available;
 	    $this->pictureFile = $pictureFile;
+	    $this->description = $description;
 	    }
 	
 	public function get($id){
@@ -23,7 +25,7 @@ class MenuItem{
 		$sth = $dbh->prepare($query);
 		$sth->execute(array($id));
 		$a = $sth->fetch();
-		return new MenuItem($a['id'],$a['categoryId'],$a['name'],$a['price'],$a['available'],$a['pictureFile']);
+		return new MenuItem($a['id'],$a['categoryId'],$a['name'],$a['price'],$a['available'],$a['pictureFile'], $a['description']);
 	}
 }
 
