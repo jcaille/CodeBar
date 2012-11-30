@@ -14,7 +14,7 @@ require_once("utils/loader.php");
  <div id="header">
   <div class="navbar navbar-fixed-top navbar-inverse">
     <div class="navbar-inner">
-      <a class="brand" href="#">CodeBar <span id="waitingCommand"> - <span id="waitingCommandCount"> 3 commandes en attente</span></a>
+      <a class="brand" href="#">CodeBar <span id="waitingCommand"> - <span id="waitingCommandCount"> <span id="actualNumberOfWaitingCommands">0</span> commandes en attente</span></a>
       <ul class="nav">
         <li class="active"><a href="#">Commandes</a></li>
       </ul>
