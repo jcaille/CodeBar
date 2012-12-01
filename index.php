@@ -29,22 +29,47 @@ require_once("utils/loader.php");
    </div>
  </div>
 
- <div id="infoPanel" class="row-fluid">
-  <div class="row-fluid">
-    <div class="span2" id="rightCollumn"></div>
-    <div class="span8" id="mainInfoPanel">
-      <div class="alert alert-success">
-        <h4>Bienvenue !</h4>
-        <p> Pour commander, faites votre choix, puis validez en cliquant sur le caddie.</p>
-      </div>
-      <div class="alert alert-info" id="infoCheckingTable">
-        <p>Une seconde, nous verifions votre table.</p>
-      </div>
-      <div class="row-fluid">
-        <a class="btn span9 offset3" id="closeInfoPanel">Ok, j'ai compris !</a>
-      </div>
+ <div id="infoPanel" class="container-fluid">
+
+  <div class="row-fluid flashOrderDrinkIntro">
+    <div class="span3 offset1">
+      <img src="http://placehold.it/100x100"/>
     </div>
-    <div class="span1" id="rightCollumn"></div>
+    <div class="span7">
+      <h4>Flash</h4>
+      <p> Lorem ipsum dolor si tamet  Lorem ipsum dolor si tametLorem ipsum dolor si tametLorem ipsum dolor si tamet</p>
+    </div>
+  </div>
+
+  <div class="row-fluid flashOrderDrinkIntro">
+    <div class="span7 text-right offset1">
+      <h4>Order</h4>
+      <p> Lorem ipsum dolor si tamet  Lorem ipsum dolor si tametLorem ipsum dolor si tametLorem ipsum dolor si tamet</p>
+    </div>
+    <div class="span3">
+      <img src="http://placehold.it/100x100"/>
+    </div>
+  </div>
+
+  <div class="row-fluid flashOrderDrinkIntro">
+    <div class="span3 offset1">
+      <img src="http://placehold.it/100x100"/>
+    </div>
+    <div class="span7">
+      <h4>Drink</h4>
+      <p> Lorem ipsum dolor si tamet  Lorem ipsum dolor si tametLorem ipsum dolor si tametLorem ipsum dolor si tamet</p>
+    </div>
+  </div>
+
+  <div class="row-fluid">
+    <div class="span8 offset2">
+    <input type="number" />
+  </div>
+
+  <div class="row-fluid">
+    <div class="span8 offset4">
+    <a href="#" class="btn" id="closeInfoPanel">Afficher la carte</a>
+  </div>
   </div>
 </div>
 

@@ -107,7 +107,16 @@
 	padding-bottom : 10px;
 }
 
+#infoPanel h4{
+	margin : 0 ;
+}
+
+#infoPanel .flashOrderDrinkIntro {
+	margin-top : 5px;
+	margin-bottom : 20px ;
+}
+
 p {
 	font-size : 0.8em;
-
+	line-height : 1.2em ;
 }
