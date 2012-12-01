@@ -28,10 +28,15 @@
 }
 
 #categoryAccordion hr{
-	margin-top : 8px ;
-	margin-bottom : 2px ;
+	margin-top : 6px ;
+	margin-bottom : 6px ;
 }
 
+.accordion-group {
+	border-radius: 0 ;
+	border : none ;
+	border-bottom : 1px #CCC solid ;
+}
 .item{
 	position : relative ;
 	padding : 0 ;
@@ -74,16 +79,17 @@
 }
 
 .item h3 {
-	font-size : 1.8em ;
-	margin-top : 0 ;
+	font-size : 1.5em ;
+	margin-top : -11px ;
 	margin-bottom : 0 ;
 }
 
 .item p {
-	margin-top : -3px;
+	margin-top : -5px;
 	margin-bottom : 0;
 	padding-top : 0;
 	padding-bottom : 0;
+	line-height: 1.2em ;
 }
 .text-right{
 	text-align : right;
@@ -103,4 +109,5 @@
 
 p {
 	font-size : 0.8em;
+
 }

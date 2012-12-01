@@ -56,13 +56,11 @@
 				$item = $items[$i];
 				$htmlString = $htmlString . "<div class='container-fluid item' id='item".$item->id."'>" ;
 
-				$htmlString = $htmlString . "<div class='span2'>" ;
-				$htmlString = $htmlString . '<span id="badgeItem'.$item->id.'" class="badgeItem badge badge-success">0</span>';
-				$htmlString = $htmlString . '<span class="removeItemBadge badge badge-important"  id="removeItem'.$item->id.'">-</span>';
-				$htmlString = $htmlString . '<span class="removeItemButton" id="removeItemButton'.$item->id.'"></span>' ;
+				$htmlString = $htmlString . "<div class='span3'>" ;
+				$htmlString = $htmlString . '<img src="http://placehold.it/300x300" />';
 				$htmlString = $htmlString . "</div>" ;
 
-				$htmlString = $htmlString . "<div class='span7'>" ;
+				$htmlString = $htmlString . "<div class='span8'>" ;
 				$htmlString = $htmlString . '<h3>'.$item->name .'</h3>';
 				$htmlString = $htmlString . '<p><strong>'.$item->price.'€ </strong>';
 				if($item->description != null){
@@ -71,9 +69,12 @@
 				$htmlString = $htmlString .'</p>';
 				$htmlString = $htmlString . "</div>" ;
 
-				$htmlString = $htmlString . "<div class='span3'>" ;
-				$htmlString = $htmlString . '<img src="http://placehold.it/300x300" />';
+				$htmlString = $htmlString . "<div class='span1'>" ;
+				$htmlString = $htmlString . '<span id="badgeItem'.$item->id.'" class="badgeItem badge badge-success">0</span>';
+				$htmlString = $htmlString . '<span class="removeItemBadge badge badge-important"  id="removeItem'.$item->id.'">-</span>';
+				$htmlString = $htmlString . '<span class="removeItemButton" id="removeItemButton'.$item->id.'"></span>' ;
 				$htmlString = $htmlString . "</div>" ;
+
 
 				$htmlString = $htmlString . '</div>' ;
 				if( $i != count($items) -1 ){
