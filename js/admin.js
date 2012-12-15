@@ -70,7 +70,7 @@ $(document).ready(function(){
 		}
 		s += "</ul></div>";
 		s += "<div class='span2'>";
-		s += "<h1 class='text-right'>"+command.price+" &euro;</h1><hr/>";
+		s += "<h1 class='text-right'>"+command.price+" &&#8364;</h1><hr/>";
 		s += "<a class='btn btn-large pull-right validateCommand' id='validateCommand"+command.id+"'>Valider</a>";
 		s += "</div></div><hr/>";
 		$("#content").prepend(s);

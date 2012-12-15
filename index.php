@@ -35,14 +35,14 @@ require_once("utils/loader.php");
     <div class="span3 offset1">
       <img src="http://placehold.it/100x100"/>
     </div>
-    <div class="span7">
+    <div class="span6">
       <h4>Flash</h4>
       <p> Lorem ipsum dolor si tamet  Lorem ipsum dolor si tametLorem ipsum dolor si tametLorem ipsum dolor si tamet</p>
     </div>
   </div>
 
   <div class="row-fluid flashOrderDrinkIntro">
-    <div class="span7 text-right offset1">
+    <div class="span6 text-right offset1">
       <h4>Order</h4>
       <p> Lorem ipsum dolor si tamet  Lorem ipsum dolor si tametLorem ipsum dolor si tametLorem ipsum dolor si tamet</p>
     </div>
@@ -55,21 +55,18 @@ require_once("utils/loader.php");
     <div class="span3 offset1">
       <img src="http://placehold.it/100x100"/>
     </div>
-    <div class="span7">
+    <div class="span6">
       <h4>Drink</h4>
       <p> Lorem ipsum dolor si tamet  Lorem ipsum dolor si tametLorem ipsum dolor si tametLorem ipsum dolor si tamet</p>
     </div>
   </div>
 
   <div class="row-fluid">
-    <div class="span8 offset2">
-    <input type="number" />
+    <input class="span8 offset2" type="number" />
   </div>
 
   <div class="row-fluid">
-    <div class="span8 offset4">
-    <a href="#" class="btn" id="closeInfoPanel">Afficher la carte</a>
-  </div>
+    <a href="#" class="btn offset4 span6" id="closeInfoPanel">Afficher la carte</a>
   </div>
 </div>
 

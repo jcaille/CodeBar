@@ -42,14 +42,14 @@
 
 		//Create html response string
 		$htmlString = "" ;
-		$htmlString = $htmlString . '<div class="row-fluid"><div id="categoryAccordion">';
+		$htmlString = $htmlString . '<div class="row-fluid"><div class="accordion" id="categoryAccordion">';
 		foreach($categories as $cat){
 			$items = $cat->getMenuItems() ;
 			$htmlString = $htmlString . '<div class="accordion-group" id="category'.$cat->id.'">';
-			$htmlString = $htmlString . '<div class="accordion-heading">';
+			$htmlString = $htmlString . '<div class="accordion-heading row-fluid">';
 			$htmlString = $htmlString . '<a class="accordion-toggle" data-toggle="collapse" data-parent="#categoryAccordion" href="#collapse'.$cat->id.'">';
-			$htmlString = $htmlString . "<div class='row-fluid'><h4 class='span10'>".$cat->name."</h4>" ;
-			$htmlString = $htmlString . '<span id="badgeCategory'.$cat->id.'" class="badgeCategory badge badge-success pull-right">0</span></div>';
+			$htmlString = $htmlString . "<h4 class='span10'>".$cat->name."</h4>" ;
+			$htmlString = $htmlString . '<span id="badgeCategory'.$cat->id.'" class="badgeCategory badge badge-success pull-right">0</span>';
 			$htmlString = $htmlString . '</a></div><div id="collapse'.$cat->id.'" class="accordion-body collapse in">';
 			$htmlString = $htmlString . '<div class="accordion-inner">';
 			for($i = 0 ; $i < count($items) ; $i++){
@@ -85,6 +85,8 @@
 			
 		}
 		$htmlString = $htmlString . '</div></div>';
+		$htmlString = $htmlString . '<div class="row-fluid">' ;
+		$htmlString = $htmlString . '<a class="btn btn-primary offset3 span6" id="processCommand">Commander</a>' ;
 
 		//Load table
 		$url = isset($_POST["url"]) ? $_POST["url"] : null ;
@@ -104,7 +106,7 @@
 			array_push($categoryList, array("category" => $cat, "items" => $categoryItemList));
 		}
 		
-		echo json_encode(array("table" => $barTableId, "database" => array("items" => $itemList, "categories" => $categoryList), "htmlContent" => $htmlString));
+		echo json_encode(array("table" => $barTableId, "database" => array("items" => $itemList, "categories" => $categoryList)));
 	}
 
 	}
