@@ -11,6 +11,8 @@ $(document).ready(function(){
 		$.ajaxSetup({ cache: false });
 	}
 
+
+	$("#infoPanel").hide() ;
 	$("#closeInfoPanel").hide() ;
 	setInfoPanelToFill() ;
 	$("#closeInfoPanel").click(function(){
@@ -25,12 +27,22 @@ $(document).ready(function(){
 				$("#closeInfoPanel").show() ;
 				globalDTB = jsonInitialData.database ;
 				globalItemDTB = jsonInitialData.database.items ;
+				checkCookie() ;
+				$("#infoPanel").show() ;
 				menu();
 			} else {
 				$("#tableIcon").html("<h2>:(</h2>");
 			}
 		}
-	)
+		)
+
+	function checkCookie(){
+		var lastCommand = getCookie("lastCommandCookie");
+		if(lastCommand != null && lastCommand != "null"){
+			var jsonLastCommand = JSON.parse(getCookie("lastCommandCookie"));
+			returnToLastCommand(jsonLastCommand.content, jsonLastCommand.id);
+		}
+	}
 
 	function menu(){
 		globalCommand = [null] ;
@@ -52,6 +64,31 @@ $(document).ready(function(){
 		$("#validateCommand").click(function(){
 			sendCommand(globalCommand);
 		});
+	}
+
+	function returnToLastCommand(commandContent, id){
+		displayCommand(commandContent);
+		$("#commandConfirmation").html("Voici votre derniere commande :");
+		$.post("utils/ajax.php?todo=getCommandStatus",
+			{"commandId" : id},
+			function(text){
+			//Handle errors
+			$("#finalRow").html("<div class='alert alert-success span8 offset1' id='commandStatus'></div>");
+			switch (text){
+				case "posted" :
+				$("#commandStatus").html("Votre commande a ete envoyee");
+				break;
+				case "received" :
+				$("#commandStatus").html("Votre commande est en train d'etre traitee");
+				break;
+				case "fulfilled" :
+				$("#commandStatus").html("Votre commande va bientot arriver");
+				break;
+				default :
+				$("#commandStatus").html("Il y'a un un probleme de communication avec le serveur.");
+			}
+		});
+		addNewCommandButton();
 	}
 
 	function sendCommand(command){
@@ -76,15 +113,19 @@ $(document).ready(function(){
 		$("#finalRow").fadeOut("slow", function(){
 			$("#finalRow").html("<div class='alert alert-success span8 offset1'> La commande est partie </div>");
 			$("#finalRow").fadeIn("slow");
-			$("#infoPanel").append("<div class='row-fluid'><a class='btn btn-primary span6 offset3' id='newCommand'>Nouvelle Commande</a></div>");
-			$("#newCommand").click(function(){
-				$("#content").show();
-				$(".collapse").collapse("hide");
-				globalCommand = [null] ;
-				updateBadgesBasedOnCommand();
-				$("#infoPanel").slideUp("fast");
-			})								
-		});
+			addNewCommandButton() ;	
+		})
+	}
+
+	function addNewCommandButton(){
+		$("#infoPanel").append("<div class='row-fluid'><a class='btn btn-primary span6 offset3' id='newCommand'>Nouvelle Commande</a></div>");
+		$("#newCommand").click(function(){
+			setCookie("lastCommandCookie", null);
+			$("#content").show();
+			globalCommand = [null] ;
+			updateBadgesBasedOnCommand();
+			$("#infoPanel").slideUp("fast");
+		})								
 	}
 
 	function errorDuringCommand(){
@@ -112,7 +153,7 @@ $(document).ready(function(){
 	}
 
 	//Returns true if and only if the command is valid.
-	function checkCommandContent(command){
+	function checkCommandContent(command, id){
 		var sum = 0 ;
 		for(i =1 ; i < command.length ; i++){
 			sum += command[i] ;
@@ -278,6 +319,29 @@ $(document).ready(function(){
 	function substractOne(id){
 		globalCommand[id] -= 1 ;
 		updateBadgesBasedOnCommand() ;
+	}
+
+	function getCookie(c_name)
+	{
+		var i,x,y,ARRcookies=document.cookie.split(";");
+		for (i=0;i<ARRcookies.length;i++)
+		{
+			x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+			y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+			x=x.replace(/^\s+|\s+$/g,"");
+			if (x==c_name)
+			{
+				return unescape(y);
+			}
+		}
+	}
+
+	function setCookie(c_name,value,exdays){
+		var exdate=new Date();
+		exdate.setDate(exdate.getDate() + exdays);
+		var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+		c_value += "; path=/ ";
+		document.cookie=c_name + "=" + c_value;
 	}
 
 	function updateBadgesBasedOnCommand(){

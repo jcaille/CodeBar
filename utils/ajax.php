@@ -8,10 +8,13 @@
 		$content = isset($_POST["content"]) ? $_POST["content"] : null ; 
 		$tableId = isset($_POST["tableId"]) ? $_POST["tableId"] : null ;
 		$command = createNewCommand($tableId, $content);
-		//$commandArray = $command->getItemArray();
 		if($command == null){
 			echo "false" ;
 		} else {
+			$res = array();
+			$res["id"] = $command->id ;
+			$res["content"] = json_decode($command->content) ;
+			setcookie("lastCommandCookie", json_encode($res), time() + 60 * 20, '/');
 			echo "true" ;
 		}
 	}
@@ -33,7 +36,14 @@
 			echo print_r($myCommand) ;
 			$myCommand->setFulfilled() ;
 		}
+	}
 
+	if($todo == "getCommandStatus"){
+		$id = isset($_POST["commandId"]) ? $_POST["commandId"] : -1 ;
+		if($id > 0){
+			$myCommand = Command::get($id) ;
+			echo($myCommand->state);
+		}
 	}
 
 	if($todo == "getInitialData"){
