@@ -31,6 +31,7 @@ $(document).ready(function(){
 				$("#infoPanel").show() ;
 				menu();
 			} else {
+				$("#infoPanel").show() ;
 				$("#tableIcon").html("<h2>:(</h2>");
 			}
 		}
