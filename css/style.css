@@ -19,6 +19,7 @@
 
 #content{
 	padding-top : 40px ;
+	padding-bottom : 40px ;
 }
 
 #progressBar{
@@ -99,11 +100,10 @@
 	z-index : 500;
 	top : 40px;
 	left : 0;
-
 	width : 100%;
 	background-color : white;
 	box-shadow : grey 0px 3px 3px;
-
+	padding : 0;
 	padding-top : 10px;
 	padding-bottom : 10px;
 }

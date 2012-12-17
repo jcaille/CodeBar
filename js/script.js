@@ -62,22 +62,42 @@ $(document).ready(function(){
 			$.post(
 				"utils/ajax.php?todo=sendCommand&ios6fix="+r,
 				{"tableId" : globalTableId , "content" : json_command},
-				function(){
-					//test for errors
-					$("#finalRow").fadeOut("slow", function(){
-						$("#finalRow").html("<div class='alert alert-success span8 offset1'> La commande est partie </div>");
-						$("#finalRow").fadeIn("slow");
-						$("#infoPanel").append("<div class='row-fluid'><a class='btn btn-primary span6 offset3' id='newCommand'>Nouvelle Commande</a></div>");
-						$("#newCommand").click(function(){
-							$("#content").show();
-							$(".collapse").collapse('hide');
-							globalCommand = [null] ;
-							updateBadgesBasedOnCommand();
-							$("#infoPanel").slideUp("fast");
-						})								
-					});
+				function(text){
+					if(text == 'true'){
+						acknowledgeCommandResult() ;
+					} else {
+						errorDuringCommand() ;
+					}
 				});
 		}
+	}
+
+	function acknowledgeCommandResult(){
+		$("#finalRow").fadeOut("slow", function(){
+			$("#finalRow").html("<div class='alert alert-success span8 offset1'> La commande est partie </div>");
+			$("#finalRow").fadeIn("slow");
+			$("#infoPanel").append("<div class='row-fluid'><a class='btn btn-primary span6 offset3' id='newCommand'>Nouvelle Commande</a></div>");
+			$("#newCommand").click(function(){
+				$("#content").show();
+				$(".collapse").collapse("hide");
+				globalCommand = [null] ;
+				updateBadgesBasedOnCommand();
+				$("#infoPanel").slideUp("fast");
+			})								
+		});
+	}
+
+	function errorDuringCommand(){
+		$("#validateCommand").html("Confirmer");
+		$("#finalRow").prepend("<div class='row-fluid' id='errorDuringCommand'></div>") ;
+		$("#errorDuringCommand").hide() ;
+		$("#errorDuringCommand").html("<div class='alert alert-error span10 offset1'> Il y a eu un probleme. Essayez de renvoyer la commande dans quelques instants</div>");
+		$("#errorDuringCommand").slideDown();
+		setTimeout(function() {
+			$("#errorDuringCommand").slideUp("slow", function(){
+				$("#errorDuringCommand").remove();
+			});
+		}, 5000);
 	}
 
 	//CHECK
@@ -118,17 +138,21 @@ $(document).ready(function(){
 			var categoryItems = database.categories[i].items ;
 			htmlString += '<div class="accordion-group" id="category' + cat.name + '">';
 			htmlString += '<div class="accordion-heading row-fluid">';
-			htmlString += '<a class="accordion-toggle" data-toggle="collapse" data-parent="#categoryAccordion" href="#collapse' + cat.id + '">';
+			htmlString += '<a class="accordion-toggle" data-toggle="collapse" data-parent=".accordion" href="#collapse' + cat.id + '">';
 			htmlString += "<h4 class='span10'>" + cat.name + "</h4>" ;
 			htmlString += '<span id="badgeCategory' + cat.id + '" class="badgeCategory badge badge-success pull-right">0</span>';
-			htmlString += '</a></div><div id="collapse' + cat.id + '" class="accordion-body collapse in">';
+			htmlString += '</a></div><div id="collapse' + cat.id + '" class="accordion-body collapse">';
 			htmlString += '<div class="accordion-inner">';
 			for(var j = 0 ; j < categoryItems.length ; j++){
 				var item = database.items[categoryItems[j]]
 				htmlString += "<div class='container-fluid item' id='item" + item.id + "'>" ;
 
 				htmlString += "<div class='span3'>" ;
-				htmlString += '<img src="http://placehold.it/300x300" />';
+				if(item.pictureFile == ''){
+					htmlString += '<img src="http://placehold.it/300x300" />';
+				} else {
+					htmlString += '<img src="' + item.pictureFile + '" />';
+				}
 				htmlString += "</div>" ;
 
 				htmlString += "<div class='span8'>" ;
@@ -164,7 +188,7 @@ $(document).ready(function(){
 
 	function displayMenu(database){
 		$("#content").html(menuHtml(database));
-		$(".collapse").collapse('hide')
+		//$(".collapse").collapse('hide')
 		updateBadgesBasedOnCommand();
 		$(".item").click(function(){
 			var id = $(this).attr("id").substring(4);
@@ -200,13 +224,13 @@ $(document).ready(function(){
 				var rowText = "";
 				rowText += "<div class='span2 offset1'>"+command[i]+" x </div>";
 				rowText += "<div class='span6'>"+globalItemDTB[i].name+"</div>";
-				rowText += "<div class='span2 text-right'>"+ (command[i]*globalItemDTB[i].price) +" &&#8364; </div>";
+				rowText += "<div class='span2 text-right'>"+ (command[i]*globalItemDTB[i].price) +" &#8364; </div>";
 				infoText += "<div class='row-fluid'>"+rowText+"</div>";
 				checkoutSum += command[i]*globalItemDTB[i].price
 			}
 		}
 		infoText += "<div class='row-fluid'><hr/></div>";
-		infoText += "<div class='row-fluid'><span id='finalRow'><a href=# id='cancelCommand' class='btn span4 offset1' >Annuler</a><a href=# id='validateCommand' class='btn span4 '>Confirmer</a></span><div class='span2 text-right' id='totalPrice'>"+checkoutSum+" &&#8364;</div>";
+		infoText += "<div class='row-fluid'><span id='finalRow'><a href=# id='cancelCommand' class='btn span4 offset1' >Annuler</a><a href=# id='validateCommand' class='btn span4 '>Confirmer</a></span><div class='span2 text-right' id='totalPrice'>"+checkoutSum+" &#8364;</div>";
 		displayInfoPanel(infoText, "#cancelCommand");
 	}
 

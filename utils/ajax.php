@@ -40,54 +40,6 @@
 		//TODO : set cookie or something to ID user ?
 		$categories = getAllCategories();
 
-		//Create html response string
-		$htmlString = "" ;
-		$htmlString = $htmlString . '<div class="row-fluid"><div class="accordion" id="categoryAccordion">';
-		foreach($categories as $cat){
-			$items = $cat->getMenuItems() ;
-			$htmlString = $htmlString . '<div class="accordion-group" id="category'.$cat->id.'">';
-			$htmlString = $htmlString . '<div class="accordion-heading row-fluid">';
-			$htmlString = $htmlString . '<a class="accordion-toggle" data-toggle="collapse" data-parent="#categoryAccordion" href="#collapse'.$cat->id.'">';
-			$htmlString = $htmlString . "<h4 class='span10'>".$cat->name."</h4>" ;
-			$htmlString = $htmlString . '<span id="badgeCategory'.$cat->id.'" class="badgeCategory badge badge-success pull-right">0</span>';
-			$htmlString = $htmlString . '</a></div><div id="collapse'.$cat->id.'" class="accordion-body collapse in">';
-			$htmlString = $htmlString . '<div class="accordion-inner">';
-			for($i = 0 ; $i < count($items) ; $i++){
-				$item = $items[$i];
-				$htmlString = $htmlString . "<div class='container-fluid item' id='item".$item->id."'>" ;
-
-				$htmlString = $htmlString . "<div class='span3'>" ;
-				$htmlString = $htmlString . '<img src="http://placehold.it/300x300" />';
-				$htmlString = $htmlString . "</div>" ;
-
-				$htmlString = $htmlString . "<div class='span8'>" ;
-				$htmlString = $htmlString . '<h3>'.$item->name .'</h3>';
-				$htmlString = $htmlString . '<p><strong>'.$item->price.'€ </strong>';
-				if($item->description != null){
-					$htmlString  = $htmlString . ' - ' . $item->description ;
-				}
-				$htmlString = $htmlString .'</p>';
-				$htmlString = $htmlString . "</div>" ;
-
-				$htmlString = $htmlString . "<div class='span1'>" ;
-				$htmlString = $htmlString . '<span id="badgeItem'.$item->id.'" class="badgeItem badge badge-success">0</span>';
-				$htmlString = $htmlString . '<span class="removeItemBadge badge badge-important"  id="removeItem'.$item->id.'">-</span>';
-				$htmlString = $htmlString . '<span class="removeItemButton" id="removeItemButton'.$item->id.'"></span>' ;
-				$htmlString = $htmlString . "</div>" ;
-
-
-				$htmlString = $htmlString . '</div>' ;
-				if( $i != count($items) -1 ){
-					$htmlString = $htmlString . "<hr/>" ;
-				}
-			}
-			$htmlString = $htmlString . '</div></div></div>';
-			
-		}
-		$htmlString = $htmlString . '</div></div>';
-		$htmlString = $htmlString . '<div class="row-fluid">' ;
-		$htmlString = $htmlString . '<a class="btn btn-primary offset3 span6" id="processCommand">Commander</a>' ;
-
 		//Load table
 		$url = isset($_POST["url"]) ? $_POST["url"] : null ;
 		$barTableId = matchWithTable($url) ;

@@ -6,7 +6,7 @@ require_once("utils/loader.php");
 <HTML>
  <HEAD>
   <TITLE>Code Bar</TITLE>
-  <meta name = "viewport" content = "width = 320,initial-scale = 1, user-scalable = no">
+  <meta name = "viewport" content = "width=320,initial-scale=1. , user-scalable = no">
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
@@ -37,14 +37,14 @@ require_once("utils/loader.php");
     </div>
     <div class="span6">
       <h4>Flash</h4>
-      <p> Lorem ipsum dolor si tamet  Lorem ipsum dolor si tametLorem ipsum dolor si tametLorem ipsum dolor si tamet</p>
+      <p>Flasher le <strong>CodeBar</strong> qui vous a ete donne.</p>
     </div>
   </div>
 
   <div class="row-fluid flashOrderDrinkIntro">
     <div class="span6 text-right offset1">
       <h4>Order</h4>
-      <p> Lorem ipsum dolor si tamet  Lorem ipsum dolor si tametLorem ipsum dolor si tametLorem ipsum dolor si tamet</p>
+      <p>Faites votre choix directement depuis votre telephone en quelques secondes.</p>
     </div>
     <div class="span3">
       <img src="http://placehold.it/100x100"/>
@@ -57,7 +57,7 @@ require_once("utils/loader.php");
     </div>
     <div class="span6">
       <h4>Drink</h4>
-      <p> Lorem ipsum dolor si tamet  Lorem ipsum dolor si tametLorem ipsum dolor si tametLorem ipsum dolor si tamet</p>
+      <p>Votre commande est directement transmise au serveur.</p>
     </div>
   </div>
 
