@@ -136,8 +136,7 @@ $(document).ready(function(){
 		$("#newCommand").click(function(){
 			setCookie("lastCommandCookie", null);
 			$("#content").show();
-			globalCommand = [null] ;
-			updateBadgesBasedOnCommand();
+			initializeCommand();
 			$("#infoPanel").slideUp("fast");
 		})								
 	}
