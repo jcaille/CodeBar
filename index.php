@@ -16,9 +16,9 @@ require_once("utils/loader.php");
    <div id="header" class="navbar navbar-fixed-top">  
      <div class="navbar-inner">  
        <div class="container-fluid">  
-        <div id ="tableIcon" class="span2"><img src="image/wait.gif" /></div>
-        <h1 class="span8">CodeBar</h1>
-        <h2 class="pull-right span2 text-right"><span id="mainItemCount">0</span></h2>
+        <div id ="tableIcon" class="span4"><img src="image/wait.gif" /></div>
+        <h1 class="span4">CodeBar</h1>
+        <h2 class="pull-right span4 text-right"><span id="mainItemCount">0</span></h2>
       </div>
     </div>  
   </div>  
@@ -37,7 +37,7 @@ require_once("utils/loader.php");
     </div>
     <div class="span6">
       <h4>Flash</h4>
-      <p>Flasher le <strong>CodeBar</strong> qui vous a ete donne.</p>
+      <p>Flashez le <strong>CodeBar</strong> qui vous a ete donne.</p>
     </div>
   </div>
 
@@ -61,12 +61,14 @@ require_once("utils/loader.php");
     </div>
   </div>
 
-  <div class="row-fluid">
-    <input class="span8 offset2" type="number" />
-  </div>
+  <div id='goToMenu'>
+<!--     <div class="row-fluid">
+      <input class="span8 offset2" type="number" />
+    </div> -->
 
-  <div class="row-fluid">
-    <a href="#" class="btn offset4 span6" id="closeInfoPanel">Afficher la carte</a>
+    <div class="row-fluid">
+      <a href="#" class="btn offset4 span6" id="closeInfoPanel">Afficher la carte</a>
+    </div>
   </div>
 </div>
 

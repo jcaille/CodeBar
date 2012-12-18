@@ -13,9 +13,10 @@ $(document).ready(function(){
 
 
 	$("#infoPanel").hide() ;
-	$("#closeInfoPanel").hide() ;
+	$("#goToMenu").hide() ;
 	setInfoPanelToFill() ;
 	$("#closeInfoPanel").click(function(){
+		initializeCommand();
 		$("#infoPanel").slideUp("fast");
 	})
 
@@ -24,14 +25,16 @@ $(document).ready(function(){
 		function(text){
 			var jsonInitialData = JSON.parse(text) ;
 			if(checkTable(jsonInitialData.table)){
-				$("#closeInfoPanel").show() ;
 				globalDTB = jsonInitialData.database ;
 				globalItemDTB = jsonInitialData.database.items ;
+				$("#tableIcon").html("<h2>:)</h2>");
 				checkCookie() ;
 				$("#infoPanel").show() ;
-				menu();
+				$("#goToMenu").slideDown() ;
 			} else {
 				$("#infoPanel").show() ;
+				$("#goToMenu").html("<div class='row-fluid'><div class='alert alert-error span10 offset1'>Il y'a eu un probleme. Essayez de reflasher votre code</div></div>")
+				$("#goToMenu").slideDown() ;
 				$("#tableIcon").html("<h2>:(</h2>");
 			}
 		}
@@ -45,13 +48,23 @@ $(document).ready(function(){
 		}
 	}
 
-	function menu(){
+	function initializeCommand(){
 		globalCommand = [null] ;
+		updateBadgesBasedOnCommand();
+		menu()
+	}
+
+	function menu(){
 		displayMenu(globalDTB);
-		$("#tableIcon").html("<h2>:)</h2>");
+		$("#tableIcon").html("<a class='btn' id='help'>?</a>");
+		$("#help").bind("click", function(){
+			displayHelp();
+		})
+		$("#mainItemCount").unbind('click');
+		$("#processCommand").unbind('click');
+		$("#mainItemCount").bind('click', processPotentialCommand );
+		$("#processCommand").bind('click', processPotentialCommand );
 		//Bind the click on item count to command validation
-		$("#mainItemCount").click( processPotentialCommand );
-		$("#processCommand").click( processPotentialCommand );
 	}
 
 	function processPotentialCommand(){
@@ -248,6 +261,7 @@ $(document).ready(function(){
 		$(closeButtonId).click(function(){
 			$("#content").show();
 			$("#infoPanel").slideUp("fast");
+			menu();
 		})
 		$("#infoPanel").slideDown("fast", function(){
 			$("#content").hide();
@@ -274,6 +288,14 @@ $(document).ready(function(){
 		infoText += "<div class='row-fluid'><hr/></div>";
 		infoText += "<div class='row-fluid'><span id='finalRow'><a href=# id='cancelCommand' class='btn span4 offset1' >Annuler</a><a href=# id='validateCommand' class='btn span4 '>Confirmer</a></span><div class='span2 text-right' id='totalPrice'>"+checkoutSum+" &#8364;</div>";
 		displayInfoPanel(infoText, "#cancelCommand");
+	}
+
+	function displayHelp(){
+		var helpHTML = "";
+		helpHTML = '<div class="row-fluid flashOrderDrinkIntro"> <div class="span3 offset1"> <img src="http://placehold.it/100x100"/> </div> <div class="span6"> <h4>Flash</h4> <p>Flashez le <strong>CodeBar</strong> qui vous a ete donne.</p> </div> </div> <div class="row-fluid flashOrderDrinkIntro"> <div class="span6 text-right offset1"> <h4>Order</h4> <p>Faites votre choix directement depuis votre telephone en quelques secondes.</p> </div> <div class="span3"> <img src="http://placehold.it/100x100"/> </div> </div> <div class="row-fluid flashOrderDrinkIntro"> <div class="span3 offset1"> <img src="http://placehold.it/100x100"/> </div> <div class="span6"> <h4>Drink</h4> <p>Votre commande est directement transmise au serveur.</p> </div> </div>'
+		helpHTML += '<div class="row-fluid"><a class="btn span6 offset4" id="closeHelp">Fermer l\'aide</a></div>' ;
+		$('#help').unbind('click');
+		displayInfoPanel(helpHTML, "#closeHelp, #help");
 	}
 
 	//COMMUNICATE
