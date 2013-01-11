@@ -23,7 +23,11 @@ $(document).ready(function(){
 	$.post("utils/ajax.php?todo=getInitialData",
 		{"url" : getUrlVars()["url"]},
 		function(text){
-			var jsonInitialData = JSON.parse(text) ;
+			try{
+				var jsonInitialData = JSON.parse(text) ;
+			} catch(err){
+				alert(text)
+			}
 			if(checkTable(jsonInitialData.table)){
 				globalDTB = jsonInitialData.database ;
 				globalItemDTB = jsonInitialData.database.items ;

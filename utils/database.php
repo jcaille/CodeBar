@@ -10,7 +10,7 @@ class Database {
 
 		$dsn = 'mysql:dbname=codebar;host=localhost';
 		$user = 'root';
-		$password = '';
+		$password = 'Nutella';
 
 		if ($DBH == null){
 			try {

@@ -33,7 +33,7 @@ require_once("utils/loader.php");
 
   <div class="row-fluid flashOrderDrinkIntro">
     <div class="span3 offset1">
-      <img src="http://placehold.it/100x100"/>
+      <img src="img/flash.jpg"/>
     </div>
     <div class="span6">
       <h4>Flash</h4>
@@ -47,13 +47,13 @@ require_once("utils/loader.php");
       <p>Faites votre choix directement depuis votre telephone en quelques secondes.</p>
     </div>
     <div class="span3">
-      <img src="http://placehold.it/100x100"/>
+      <img src="img/order.jpg"/>
     </div>
   </div>
 
   <div class="row-fluid flashOrderDrinkIntro">
     <div class="span3 offset1">
-      <img src="http://placehold.it/100x100"/>
+      <img src="img/drink.jpg"/>
     </div>
     <div class="span6">
       <h4>Drink</h4>
