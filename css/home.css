@@ -4,7 +4,7 @@
 	color : white;
 	color : rgba(10,10,30,0.7);
 	border-radius : 0;
-	box-shadow:inset 0px -2px 10px rgba(0,0,0,0.8);
+	box-shadow:inset 0px 0px 10px rgba(0,0,0,0.5);
 }
 
 #top-hero h1, #top-hero h3{
@@ -13,7 +13,10 @@
 
 #flashOrderDrink-hero{
 	text-align : center;
-	box-shadow:inset 0px 2px 10px rgba(0,0,0,0.8);
+	box-shadow:inset 0px 0px 10px rgba(0,0,0,0.5);
+	padding : 30px;
+	margin-top : 30px ;
+	background-color: #EEE;
 }
 
 #flashOrderDrink-hero img{
@@ -21,8 +24,16 @@
 	margin : auto ;
 }
 
-#flashOrderDrink-hero{
-	background-color: #DDD ;
-	padding :10px;
-	margin-top : 30px ;
+#moreInfo{
+	margin-top : 30px;
+}
+
+#exampleCode{
+	width : 150px;
+	margin : auto;
+}
+
+#aboutUs{
+	margin-top : 60px;
+	margin-bottom : 50px ;
 }
